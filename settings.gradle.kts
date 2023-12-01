@@ -1,7 +1,16 @@
-rootProject.name = "Advent of Code Kotlin Template"
+rootProject.name = "advent-2023"
 
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
+plugins {
+    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.0.24"
+}
+
+gitHooks {
+    preCommit {
+        from {
+            """
+            ./gradlew check
+            """.trimIndent()
+        }
     }
+    createHooks(true)
 }
