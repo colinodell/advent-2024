@@ -17,4 +17,4 @@ Past years, in other languages:
 
 All solutions in this repository are originals unless otherwise noted
 
-Copyright &copy; 2023 by Colin O'Dell.
+Copyright &copy; 2024 by Colin O'Dell.
