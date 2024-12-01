@@ -1,4 +1,4 @@
-package com.colinodell.advent2023
+package com.colinodell.advent2024
 
 import java.io.File
 import java.net.URI

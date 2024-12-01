@@ -1,7 +1,7 @@
-package com.colinodell.advent2023
+package com.colinodell.advent2024
 
-import com.colinodell.advent2023.Inputs.inputAsListOfString
-import com.colinodell.advent2023.Inputs.inputAsText
+import com.colinodell.advent2024.Inputs.inputAsListOfString
+import com.colinodell.advent2024.Inputs.inputAsText
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Nested

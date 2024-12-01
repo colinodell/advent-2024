@@ -1,7 +1,7 @@
-rootProject.name = "advent-2023"
+rootProject.name = "advent-2024"
 
 plugins {
-    id("org.danilopianini.gradle-pre-commit-git-hooks") version "1.0.24"
+    id("org.danilopianini.gradle-pre-commit-git-hooks") version "2.0.15"
 }
 
 gitHooks {
