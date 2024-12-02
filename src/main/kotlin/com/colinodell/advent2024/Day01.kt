@@ -11,6 +11,5 @@ class Day01(input: List<String>) {
             .let { (a, b) -> a.sorted() to b.sorted() }
 
     fun solvePart1() = lists.first.zip(lists.second).sumOf { (a, b) -> (a - b).absoluteValue }
-
     fun solvePart2() = lists.first.sumOf { a -> a * lists.second.count { it == a } }
 }
