@@ -3,28 +3,22 @@ package com.colinodell.advent2024
 class Day03(input: String) {
     private val instructions = Regex("""mul\((\d{1,3}),(\d{1,3})\)|do(?:n't)?\(\)""").findAll(input).toList()
 
-    fun solvePart1() = executeInstructions(withConditionals = false)
-    fun solvePart2() = executeInstructions(withConditionals = true)
+    fun solvePart1() = executeInstructions(withConditionals = false).acc
+    fun solvePart2() = executeInstructions(withConditionals = true).acc
 
-    private fun executeInstructions(withConditionals: Boolean = false): Int {
-        var acc = 0
-        var mulEnabled = true
-        for (instruction in instructions) {
+    private fun executeInstructions(withConditionals: Boolean = false) =
+        instructions.fold(ExecutionState()) { state, instruction ->
             when {
-                instruction.value.startsWith("mul") -> if (mulEnabled) {
+                instruction.value == "do()" && withConditionals -> state.copy(mulEnabled = true)
+                instruction.value == "don't()" && withConditionals -> state.copy(mulEnabled = false)
+                instruction.value.startsWith("mul") && state.mulEnabled -> {
                     val (a, b) = instruction.groupValues.drop(1).map(String::toInt)
-                    acc += a * b
+                    state.copy(acc = state.acc + a * b)
                 }
 
-                instruction.value == "do()" -> if (withConditionals) {
-                    mulEnabled = true
-                }
-
-                instruction.value == "don't()" -> if (withConditionals) {
-                    mulEnabled = false
-                }
+                else -> state
             }
         }
-        return acc
-    }
+
+    private data class ExecutionState(val acc: Int = 0, val mulEnabled: Boolean = true)
 }
