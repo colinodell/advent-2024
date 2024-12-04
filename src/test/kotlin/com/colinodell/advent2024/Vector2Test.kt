@@ -357,6 +357,21 @@ class GridTest {
             """.trimIndent(),
         )
     }
+
+    @Test
+    fun `valuesBetween()`() {
+        val grid: Grid<Char> =
+            mapOf(
+                Pair(Vector2(0, 0), 'a'),
+                Pair(Vector2(2, 0), 'b'),
+                Pair(Vector2(1, 1), 'c'),
+                Pair(Vector2(0, 2), 'd'),
+                Pair(Vector2(2, 2), 'e'),
+            )
+
+        assertThat(grid.valuesBetween(Vector2(0, 0), Vector2(2, 2))).isEqualTo("ace".toList())
+        assertThat(grid.valuesBetween(Vector2(0, 0), Vector2(2, 0))).isEqualTo("ab".toList())
+    }
 }
 
 @Nested

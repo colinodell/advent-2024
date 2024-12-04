@@ -223,6 +223,9 @@ fun <T> Grid<T>.rows() = IntRange(keys.minOf { it.y }, keys.maxOf { it.y })
 
 fun <T> Grid<T>.cols() = IntRange(keys.minOf { it.x }, keys.maxOf { it.x })
 
+fun <T> Grid<T>.valuesBetween(start: Vector2, end: Vector2) =
+    Line(start, end).points.mapNotNull { get(it) }
+
 fun Collection<Vector2>.width() = maxOf { it.x } - minOf { it.x } + 1
 
 fun Collection<Vector2>.height() = maxOf { it.y } - minOf { it.y } + 1
