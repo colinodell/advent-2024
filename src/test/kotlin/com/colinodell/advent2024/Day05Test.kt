@@ -19,4 +19,14 @@ class Day05Test {
     fun `Part 1 - Actual`() {
         assertThat(Day05(puzzleInput).solvePart1()).isEqualTo(5129)
     }
+
+    @Test
+    fun `Part 2 - Example`() {
+        assertThat(Day05(exampleInput).solvePart2()).isEqualTo(123)
+    }
+
+    @Test
+    fun `Part 2 - Actual`() {
+        assertThat(Day05(puzzleInput).solvePart2()).isEqualTo(4077)
+    }
 }
