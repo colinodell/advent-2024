@@ -11,11 +11,8 @@ class Day18(input: List<String>, maxDim: Int) {
         .toSet()
         .let { fallen -> simulate(fallen).score() }
 
-    fun solvePart2(lowerBound: Int) = (lowerBound until corruptedBytes.size)
-        .map { corruptedBytes.take(it) }
-        .first { !simulate(it.toSet()).foundEnd() }
-        .last()
-        .let { "${it.x},${it.y}" }
+    fun solvePart2(lowerBound: Int) = binarySearch(lowerBound, corruptedBytes.size) { !pathExists(it) }
+        .let { corruptedBytes[it!! - 1].run { "$x,$y" } }
 
     private fun simulate(fallen: Set<Vector2>) = aStar(
         start = region.topLeft,
@@ -29,4 +26,6 @@ class Day18(input: List<String>, maxDim: Int) {
         cost = { _, _ -> 1 },
         heuristic = { it.manhattanDistanceTo(region.bottomRight) },
     )
+
+    private fun pathExists(fallen: Int) = simulate(corruptedBytes.take(fallen).toSet()).foundEnd()
 }

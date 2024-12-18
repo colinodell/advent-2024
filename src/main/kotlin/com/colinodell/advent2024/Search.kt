@@ -74,3 +74,24 @@ class SearchResult<State>(private val end: State?, private val seen: Map<State, 
 //        return (g as Grid<Char>).toStringVisualization()
 //    }
 }
+
+// Binary search for the lowest value that satisfies the predicate
+fun binarySearch(min: Int, max: Int, predicate: (Int) -> Boolean): Int? {
+    var low = min
+    var high = max
+    var result: Int? = null
+
+    while (low <= high) {
+        val mid = low + (high - low) / 2
+        if (predicate(mid)) {
+            // predicate(mid) is true. Record it and try to find an earlier true.
+            result = mid
+            high = mid - 1
+        } else {
+            // predicate(mid) is false. We need to look for true in a higher range.
+            low = mid + 1
+        }
+    }
+
+    return result
+}
