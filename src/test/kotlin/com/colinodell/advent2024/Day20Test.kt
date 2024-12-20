@@ -12,7 +12,7 @@ class Day20Test {
 
     @Test
     fun `Part 1 - Example`() {
-        assertThat(Day20(exampleInput).solvePart1(0)).isEqualTo(14 + 14 + 2 + 4 + 2 + 3 + 1 + 1 + 1 + 1 + 1)
+        assertThat(Day20(exampleInput).solvePart1(1)).isEqualTo(14 + 14 + 2 + 4 + 2 + 3 + 1 + 1 + 1 + 1 + 1)
     }
 
     @Test
