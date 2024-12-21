@@ -11,7 +11,7 @@ class Day08(input: List<String>) {
         .groupBy { grid[it]!! }
         // Generate antenna pairs
         .values
-        .flatMap { it.permutations() }
+        .flatMap { it.permutationPairs() }
 
     fun solvePart1() = antennaPairs
         .flatMap { (a, b) ->

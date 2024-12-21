@@ -142,6 +142,43 @@ class Vector2Test {
         assertThat(Vector2(0, 0).directionTo(Vector2(1, 0))).isEqualTo(Direction.EAST)
         assertThat(Vector2(0, 0).directionTo(Vector2(1, 1))).isNull()
     }
+
+    @Test
+    fun `Follow`() {
+        assertThat(Vector2(0, 0).follow(listOf()).toList()).isEqualTo(
+            listOf(
+                Vector2(0, 0),
+            ),
+        )
+        assertThat(Vector2(0, 0).follow(listOf(Direction.SOUTH)).toList()).isEqualTo(
+            listOf(
+                Vector2(0, 0),
+                Vector2(0, 1),
+            ),
+        )
+        assertThat(Vector2(-3, 7).follow(listOf(Direction.WEST, Direction.SOUTH)).toList()).isEqualTo(
+            listOf(
+                Vector2(-3, 7),
+                Vector2(-4, 7),
+                Vector2(-4, 8),
+            ),
+        )
+    }
+
+    @Test
+    fun `As Directions`() {
+        assertThat(Vector2(0, 0).asDirections().toList()).isEqualTo(listOf<Direction>())
+        assertThat(Vector2(0, 1).asDirections().toList()).isEqualTo(listOf(Direction.SOUTH))
+        assertThat(Vector2(-3, 2).asDirections().toList()).isEqualTo(
+            listOf(
+                Direction.WEST,
+                Direction.WEST,
+                Direction.WEST,
+                Direction.SOUTH,
+                Direction.SOUTH,
+            ),
+        )
+    }
 }
 
 @Nested

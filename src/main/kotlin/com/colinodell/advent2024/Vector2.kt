@@ -65,6 +65,23 @@ data class Vector2(val x: Int, val y: Int) {
             Vector2(1, 0) -> Direction.EAST
             else -> null
         }
+
+    fun follow(directions: Iterable<Direction>) =
+        directions.asSequence().runningFold(this) { pos, dir -> pos + dir.vector() }
+
+    fun asDirections() = sequence {
+        var current = Vector2(0, 0)
+        while (current != this@Vector2) {
+            val direction = when {
+                current.x < this@Vector2.x -> Direction.EAST
+                current.x > this@Vector2.x -> Direction.WEST
+                current.y < this@Vector2.y -> Direction.SOUTH
+                else -> Direction.NORTH
+            }
+            yield(direction)
+            current += direction.vector()
+        }
+    }
 }
 
 data class Vector2L(val x: Long, val y: Long) {
